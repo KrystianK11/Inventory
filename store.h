@@ -17,4 +17,20 @@ public:
     bool buyItem(Player& player, int itemIndex);
 };
 
+class PotionShop
+{
+private:
+    std::vector<Item*> stock;
+    int shopLevel;
+    int upgradeCost;
+
+public:
+    PotionShop();
+    ~PotionShop();
+    void refreshStock();
+    void displayStock();
+    bool buyItem(Player& player, int itemIndex);
+    void upgradeShop(Player& player);
+};
+
 #endif
