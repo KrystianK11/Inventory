@@ -19,7 +19,7 @@ public:
     Inventory();
     ~Inventory();
 
-    void display();
+    void display(Item* equippedWeapon = nullptr, Item* equippedArmor = nullptr);
     void displaySelectedInfo();
     bool addItem(Item* item);
     void handleSwap();
