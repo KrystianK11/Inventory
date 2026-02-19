@@ -57,7 +57,7 @@ void Inventory::handleSwap()
     }
 }
 
-void Inventory::display()
+void Inventory::display(Item* equippedWeapon, Item* equippedArmor)
 {
     std::cout << "\n=== INVENTORY ===\n";
     if(isDragging) {
@@ -75,9 +75,10 @@ void Inventory::display()
             else                              std::cout << " [";
 
             if (items[i][j] != nullptr) {
-                std::cout << items[i][j]->getName().at(0);
+                bool isEq = (items[i][j] == equippedWeapon || items[i][j] == equippedArmor);
+                std::cout << items[i][j]->getName().at(0) << (isEq ? '*' : ' ');
             } else {
-                std::cout << " ";
+                std::cout << "  ";
             }
 
             if (isBeingDragged && isSelected) std::cout << "{<";
@@ -94,9 +95,13 @@ void Inventory::displaySelectedInfo()
     std::cout << "\n=== DETAILS ===\n";
     if (items[currentRow][currentCol] != nullptr) {
         std::cout << "Name:       " << items[currentRow][currentCol]->getName() << "\n";
-        std::cout << "Price:      " << items[currentRow][currentCol]->getPrice() << "\n";
-        std::cout << "Durability: " << items[currentRow][currentCol]->getDurability() << "\n";
+        std::cout << "Type:       " << items[currentRow][currentCol]->getTypeString() << "\n";
+        std::cout << "Rarity:     " << items[currentRow][currentCol]->getRarityString() << "\n";
         std::cout << "Level:      " << items[currentRow][currentCol]->getLevel() << "\n";
+        std::cout << "Stat Value: " << items[currentRow][currentCol]->getStat() << "\n";
+        std::cout << "Durability: " << items[currentRow][currentCol]->getDurability() << "/100\n";
+        std::cout << "Price:      " << items[currentRow][currentCol]->getPrice() << "G\n";
+        std::cout << "Upgr. Cost: " << items[currentRow][currentCol]->getUpgradeCost() << "G\n";
     } else {
         std::cout << "[Empty Slot]\n";
     }
