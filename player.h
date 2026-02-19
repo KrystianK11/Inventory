@@ -16,6 +16,11 @@ private:
     Item* equippedWeapon;
     Item* equippedArmor;
 
+    double strengthMult;
+    int strRounds;
+    double defenseMult;
+    int defRounds;
+
 public:
     Player(std::string name);
     ~Player();
@@ -26,6 +31,19 @@ public:
     int getGold() const;
     void addGold(int amount);
     bool spendGold(int amount);
+
+    int getHealth() const;
+    void takeDamage(int amount);
+    void heal(int amount);
+
+    Item* getEquippedWeapon();
+    Item* getEquippedArmor();
+    void equipItem(Item* item);
+
+    double getStrengthMult() const;
+    double getDefenseMult() const;
+    bool applyPotion(bool isStr, double mult);
+    void decrementBuffs();
 };
 
 #endif
