@@ -1,3 +1,3 @@
 # Inventory
-A game inventory system where the user can move around, check details, and operate on items from the shop.
+Console-based RPG developed in C++. The game features a dynamic inventory management system, procedural encounters, an Anvil mechanic for merging items, and a persistent save/load system, and more.
 trello: https://trello.com/b/UCpV3ZoX/inventory
