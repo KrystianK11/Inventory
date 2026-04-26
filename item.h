@@ -39,6 +39,7 @@ public:
     std::string getRarityString() const;
     virtual std::string getTypeString() const;
     virtual int getStat() const;
+    virtual int getBaseStat() const;
 
     virtual void use();
     void upgrade();
@@ -50,6 +51,7 @@ private:
 public:
     Weapon(std::string name, int price, int damage);
     int getStat() const override;
+    int getBaseStat() const override;
     std::string getTypeString() const override;
 };
 
@@ -59,6 +61,7 @@ private:
 public:
     Armor(std::string name, int price, int defense);
     int getStat() const override;
+    int getBaseStat() const override;
     std::string getTypeString() const override;
 };
 
@@ -72,6 +75,7 @@ public:
     std::string getTypeString() const override;
     bool isStrengthPotion() const;
     double getMultiplier() const;
+    int getPotLevel() const;
 };
 
 #endif

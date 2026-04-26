@@ -20,6 +20,7 @@ std::string Item::getRarityString() const {
 
 std::string Item::getTypeString() const { return "Misc"; }
 int Item::getStat() const { return 0; }
+int Item::getBaseStat() const { return 0; }
 
 void Item::use() {
     if (durability > 0) {
@@ -57,15 +58,17 @@ Item::Item(const std::string &name, int price)
 
 Weapon::Weapon(std::string name, int price, int damage) : Item(name, price), damage(damage) {}
 int Weapon::getStat() const { return (int)(damage * statMultiplier); }
+int Weapon::getBaseStat() const { return damage; }
 std::string Weapon::getTypeString() const { return "Weapon"; }
 
 Armor::Armor(std::string name, int price, int defense) : Item(name, price), defense(defense) {}
 int Armor::getStat() const { return (int)(defense * statMultiplier); }
+int Armor::getBaseStat() const { return defense; }
 std::string Armor::getTypeString() const { return "Armor"; }
 
 Potion::Potion(bool isStrength, int lvl) : Item("", 0), strengthType(isStrength), potLevel(lvl) {
-    if(strengthType) name = "Str Potion T" + std::to_string(lvl);
-    else name = "Def Potion T" + std::to_string(lvl);
+    if(strengthType) name = "Strength_Potion_T" + std::to_string(lvl);
+    else name = "Defense_Potion_T" + std::to_string(lvl);
 
     if(lvl == 1) { buffMultiplier = 1.3; price = 50; }
     else if(lvl == 2) { buffMultiplier = 1.5; price = 100; }
@@ -76,3 +79,4 @@ Potion::Potion(bool isStrength, int lvl) : Item("", 0), strengthType(isStrength)
 std::string Potion::getTypeString() const { return "Potion"; }
 bool Potion::isStrengthPotion() const { return strengthType; }
 double Potion::getMultiplier() const { return buffMultiplier; }
+int Potion::getPotLevel() const { return potLevel; }

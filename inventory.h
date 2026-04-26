@@ -1,6 +1,7 @@
 #ifndef INVENTORY_H
 #define INVENTORY_H
 #include "item.h"
+#include <string>
 
 class Inventory
 {
@@ -19,10 +20,13 @@ public:
     Inventory();
     ~Inventory();
 
-    void display(Item* equippedWeapon = nullptr, Item* equippedArmor = nullptr);
+    Item* takeItemAt(int r, int c);
+    void display(std::string filter = "ALL", Item* equippedWeapon = nullptr, Item* equippedArmor = nullptr);
     void displaySelectedInfo();
     bool addItem(Item* item);
     void handleSwap();
+    void rearrangeInventory(std::string method);
+    void deleteItemAtCurrent();
 
     int getRows() const;
     void setRows(int newRows);
@@ -35,6 +39,7 @@ public:
     int getCurrentCol() const;
     void setCurrentCol(int newCurrentCol);
     bool getIsDragging() const;
+    Item* getItemAt(int r, int c);
 };
 
 #endif
